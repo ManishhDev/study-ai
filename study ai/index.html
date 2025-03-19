@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyAI</title>
+    <link href="/src/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gradient-to-b from-primary-50 to-white">
+      <!-- Navigation -->
+      <nav class="bg-white border-b shadow-sm">
+        <div class="max-w-[1920px] mx-auto px-4 sm:px-6">
+          <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center">
+              <i data-lucide="brain" class="h-8 w-8 text-primary-600"></i>
+              <span class="ml-2 text-xl font-bold text-gray-900">StudyAI</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+              <a href="#features" class="text-gray-600 hover:text-primary-600">Features</a>
+              <a href="#pricing" class="text-gray-600 hover:text-primary-600">Premium</a>
+              <button class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                Sign Up
+              </button>
+            </div>
+            <div class="md:hidden">
+              <i data-lucide="menu" class="h-6 w-6 text-gray-600"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="max-w-[1920px] mx-auto px-4 sm:px-6">
+        <!-- Mode Selection -->
+        <div class="flex overflow-x-auto py-4 gap-2 border-b scrollbar-hide" id="modes">
+          <!-- Modes will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Main Editor -->
+        <div class="grid md:grid-cols-2 gap-6 py-6">
+          <!-- Input Section -->
+          <div class="flex flex-col">
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="text-xl font-semibold text-gray-900">Input Text</h2>
+              <div class="flex items-center gap-2">
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept=".txt,.pdf,.doc,.docx"
+                  class="hidden"
+                />
+                <button 
+                  id="uploadButton"
+                  class="text-gray-600 hover:text-primary-600 text-sm flex items-center transition-colors"
+                >
+                  <i data-lucide="upload" class="h-4 w-4 mr-1"></i>
+                  Upload File
+                </button>
+              </div>
+            </div>
+            
+            <div id="uploadError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg hidden items-center justify-between">
+              <span class="text-red-600 text-sm"></span>
+              <button class="text-red-600 hover:text-red-700">
+                <i data-lucide="x" class="h-4 w-4"></i>
+              </button>
+            </div>
+
+            <textarea
+              id="inputText"
+              placeholder="Paste your text here or upload a file..."
+              class="flex-grow p-4 border rounded-lg resize-none min-h-[400px] focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow"
+            ></textarea>
+            <div class="mt-4 flex justify-between items-center">
+              <div class="text-sm text-gray-500">
+                <span id="charCount">0</span> characters
+              </div>
+              <button
+                id="convertButton"
+                class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                disabled
+              >
+                Convert
+                <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Output Section -->
+          <div class="flex flex-col">
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="text-xl font-semibold text-gray-900">AI Output</h2>
+              <div class="flex items-center gap-2">
+                <button 
+                  id="chatToggle"
+                  class="text-gray-600 hover:text-primary-600 text-sm flex items-center transition-colors"
+                >
+                  <i data-lucide="message-square" class="h-4 w-4 mr-1"></i>
+                  Chat
+                </button>
+                <button class="text-gray-600 hover:text-primary-600 text-sm flex items-center transition-colors">
+                  Copy <i data-lucide="chevron-down" class="h-4 w-4 ml-1"></i>
+                </button>
+              </div>
+            </div>
+            <div class="flex-grow p-4 border rounded-lg min-h-[400px] bg-white shadow-sm">
+              <div id="outputContent">
+                <div class="h-full flex items-center justify-center text-gray-500 flex-col">
+                  <i data-lucide="sparkles" class="h-12 w-12 mb-4 text-primary-600"></i>
+                  <p>Your AI-generated content will appear here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Preview -->
+      <div class="bg-primary-50/50 py-12 mt-8">
+        <div class="max-w-[1920px] mx-auto px-4 sm:px-6">
+          <h2 class="text-2xl font-bold text-center mb-8">Transform Your Study Experience</h2>
+          <div class="grid md:grid-cols-3 gap-6" id="features">
+            <!-- Features will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Bot -->
+    <div id="chatBot" class="fixed bottom-4 right-4 z-50">
+      <button id="chatBotToggle" class="bg-primary-600 text-white p-4 rounded-full shadow-lg hover:bg-primary-700 transition-colors">
+        <i data-lucide="message-circle" class="h-6 w-6"></i>
+      </button>
+      <div id="chatBotWindow" class="hidden absolute bottom-16 right-0 w-96 bg-white rounded-lg shadow-xl border">
+        <div class="p-4 border-b">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <i data-lucide="bot" class="h-6 w-6 text-primary-600 mr-2"></i>
+              <h3 class="font-semibold">StudyAI Assistant</h3>
+            </div>
+            <button id="closeChatBot" class="text-gray-500 hover:text-gray-700">
+              <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+        <div id="chatMessages" class="p-4 h-96 overflow-y-auto space-y-4"></div>
+        <div class="p-4 border-t">
+          <div class="relative">
+            <textarea
+              id="chatInput"
+              placeholder="Ask me anything..."
+              class="w-full p-3 pr-12 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              rows="1"
+            ></textarea>
+            <button
+              id="sendMessage"
+              class="absolute right-2 bottom-2 p-1 text-primary-600 hover:text-primary-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <i data-lucide="send" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

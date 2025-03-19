@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.chat-message {
+  @apply flex items-start gap-2 max-w-[80%] mb-4;
+}
+
+.chat-message.assistant {
+  @apply mr-auto;
+}
+
+.chat-message.user {
+  @apply ml-auto flex-row-reverse;
+}
+
+.chat-bubble {
+  @apply rounded-lg p-3;
+}
+
+.chat-bubble.assistant {
+  @apply bg-white border border-gray-200;
+}
+
+.chat-bubble.user {
+  @apply bg-primary-600 text-white;
+}
+
+.chat-avatar {
+  @apply w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0;
+}
+
+.feature-card {
+  @apply bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow;
+}
+
+.feature-icon {
+  @apply h-6 w-6 text-primary-600 mb-4;
+}
+
+.mode-button {
+  @apply flex items-center px-4 py-2 rounded-lg whitespace-nowrap transition-colors;
+}
+
+.mode-button.active {
+  @apply bg-primary-100 text-primary-600;
+}
+
+.mode-button:not(.active) {
+  @apply text-gray-600 hover:bg-gray-100;
+}
+
+.mode-icon {
+  @apply h-5 w-5 mr-2;
+}
